@@ -119,9 +119,11 @@ public class Runigram {
 	 * Returns an image which is the grayscaled version of the given image.
 	 */
 	public static Color[][] grayScaled(Color[][] image) {
-		Color[][] grayImage = new Color[image.length][image[0].length];
-		for (int i = 0; i < image.length; i++) {
-			for (int j = 0; j < image[0].length; j++) {
+		int numRows = image.length;
+		int numCols = image[0].length;
+		Color[][] grayImage = new Color[numRows][numCols];
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
 				grayImage[i][j] = luminance(image[i][j]);
 			}
 		}
@@ -154,9 +156,9 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		int r = (int) Math.round(alpha * c1.getRed() + (1 - alpha) * c2.getRed());
-		int g = (int) Math.round(alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
-		int b = (int) Math.round(alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
+		int r = (int) (alpha * c1.getRed() + (1 - alpha) * c2.getRed());
+		int g = (int) (alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
+		int b = (int) (alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
 		return new Color(r, g, b);
 	}
 
