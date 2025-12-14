@@ -140,15 +140,23 @@ public class Runigram {
 		// }
 		// return grayImage;
 
-		int numRows = image.length;
-		int numCols = image[0].length;
-		Color[][] greyImage = new Color[numRows][numCols];
+		// int numRows = image.length;
+		// int numCols = image[0].length;
+		// Color[][] greyImage = new Color[numRows][numCols];
+		// for (int i = 0; i < image.length; i++) {
+		// 	for (int j = 0; j < image[0].length; j++) {
+		// 		greyImage[i][j] = luminance(image[i][j]);
+		// 	}
+		// }
+		// return greyImage;
+
+		Color[][] grayImage = new Color[image.length][image[0].length];
 		for (int i = 0; i < image.length; i++) {
 			for (int j = 0; j < image[0].length; j++) {
-				greyImage[i][j] = luminance(image[i][j]);
+				grayImage[i][j] = luminance(image[i][j]);
 			}
 		}
-		return greyImage;
+		return grayImage;
 	}
 
 	/**
