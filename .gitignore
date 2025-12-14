@@ -3,8 +3,8 @@
 # Compiled class files
 *.class
 
-# launch json file
-.json
+# # launch json file
+# .json
 
 # Log files
 *.log
