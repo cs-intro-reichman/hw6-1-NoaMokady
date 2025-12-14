@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Editor4",
+            "request": "launch",
+            "mainClass": "Editor4",
+            "projectName": "hw6-1-NoaMokady_75944fd3"
+        },
+        {
+            "type": "java",
             "name": "Runigram",
             "request": "launch",
             "mainClass": "Runigram",
@@ -23,7 +30,7 @@
             "request": "launch",
             "mainClass": "TesterRunigram",
             "args": [
-                "blend"
+                "read"
             ]
         }
     ]

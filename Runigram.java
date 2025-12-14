@@ -22,17 +22,6 @@ public class Runigram {
 
 		//// Write here whatever code you need in order to test your work. You can
 		/// continue using the image array.
-
-		// image = flippedVertically(tinypic);
-		// System.out.println();
-		// print(image);
-
-		// image = scaled(tinypic, 3, 5);
-		// System.out.println();
-		// print(image);
-
-		// System.out.println();
-		// print(blend(new Color(100, 40, 100), new Color(200, 20 ,40), 0.25));
 	}
 
 	/**
@@ -148,24 +137,22 @@ public class Runigram {
 	public static Color[][] scaled(Color[][] image, int width, int height) {
 		// int sourceHeight = image.length;
 		// int sourceWidth = image[0].length;
-		// double heightScaleFactor = (double) sourceHeight / height;
-		// double widthScaleFactor = (double) sourceWidth / width;
 		// Color[][] targetImage = new Color[height][width];
 		// for (int i = 0; i < height; i++) {
 		// 	for (int j = 0; j < width; j++) {
-		// 		targetImage[i][j] = image[(int) (i * heightScaleFactor)][(int) (j * widthScaleFactor)];
+		// 		int srcI = i * sourceHeight / height;
+		// 		int srcJ = j * sourceWidth/ width;
+		// 		targetImage[i][j] = image[srcI][srcJ];
 		// 	}
 		// }
 		// return targetImage;
 
-		int sourceHeight = image.length;
-		int sourceWidth = image[0].length;
+		double heightScaleFactor = (double) image.length / height;
+		double widthScaleFactor = (double) image[0].length / width;
 		Color[][] targetImage = new Color[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				int srcI = i * sourceHeight / height;
-				int srcJ = j * sourceWidth/ width;
-				targetImage[i][j] = image[srcI][srcJ];
+				targetImage[i][j] = image[(int) (i * heightScaleFactor)][(int) (j * widthScaleFactor)];
 			}
 		}
 		return targetImage;
@@ -181,11 +168,6 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		// int r = (int) Math.round(alpha * c1.getRed() + (1 - alpha) * c2.getRed());
-		// int g = (int) Math.round(alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
-		// int b = (int) Math.round(alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
-		// return new Color(r, g, b);
-
 		int r = (int) (alpha * c1.getRed() + (1 - alpha) * c2.getRed());
 		int g = (int) (alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
 		int b = (int) (alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
