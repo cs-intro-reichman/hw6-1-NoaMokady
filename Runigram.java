@@ -135,27 +135,27 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
-		// int sourceHeight = image.length;
-		// int sourceWidth = image[0].length;
-		// Color[][] targetImage = new Color[height][width];
-		// for (int i = 0; i < height; i++) {
-		// 	for (int j = 0; j < width; j++) {
-		// 		int srcI = i * sourceHeight / height;
-		// 		int srcJ = j * sourceWidth/ width;
-		// 		targetImage[i][j] = image[srcI][srcJ];
-		// 	}
-		// }
-		// return targetImage;
-
-		double heightScaleFactor = (double) image.length / height;
-		double widthScaleFactor = (double) image[0].length / width;
+		int sourceHeight = image.length;
+		int sourceWidth = image[0].length;
 		Color[][] targetImage = new Color[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				targetImage[i][j] = image[(int) (i * heightScaleFactor)][(int) (j * widthScaleFactor)];
+				int srcI = i * sourceHeight / height;
+				int srcJ = j * sourceWidth/ width;
+				targetImage[i][j] = image[srcI][srcJ];
 			}
 		}
 		return targetImage;
+
+		// double heightScaleFactor = (double) image.length / height;
+		// double widthScaleFactor = (double) image[0].length / width;
+		// Color[][] targetImage = new Color[height][width];
+		// for (int i = 0; i < height; i++) {
+		// 	for (int j = 0; j < width; j++) {
+		// 		targetImage[i][j] = image[(int) (i * heightScaleFactor)][(int) (j * widthScaleFactor)];
+		// 	}
+		// }
+		// return targetImage;
 	}
 
 	/**
