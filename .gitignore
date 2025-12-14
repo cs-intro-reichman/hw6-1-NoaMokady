@@ -3,12 +3,6 @@
 # Compiled class files
 *.class
 
-<<<<<<< HEAD
-# # launch json file
-# .json
-
-=======
->>>>>>> parent of 910248b (Fixed bug)
 # Log files
 *.log
 

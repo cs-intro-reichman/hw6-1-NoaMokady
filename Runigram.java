@@ -163,13 +163,13 @@ public class Runigram {
 		Color[][] targetImage = new Color[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-<<<<<<< HEAD
-				int srcI = i * sourceHeight / height;
-				int srcJ = j * sourceWidth / width;
-				targetImage[i][j] = image[srcI][srcJ];
-=======
+// <<<<<<< HEAD
+				// int srcI = i * sourceHeight / height;
+				// int srcJ = j * sourceWidth / width;
+				// targetImage[i][j] = image[srcI][srcJ];
+// =======
 				targetImage[i][j] = image[(int) (i * heightScaleFactor)][(int) (j * widthScaleFactor)];
->>>>>>> parent of 910248b (Fixed bug)
+// >>>>>>> parent of 910248b (Fixed bug)
 			}
 		}
 		return targetImage;
