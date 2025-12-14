@@ -13,12 +13,12 @@ public class Runigram {
 
 		// Creates an image which will be the result of various
 		// image processing operations:
-		// Color[][] image;
+		Color[][] image;
 
 		// Tests the horizontal flipping of an image:
-		// image = flippedHorizontally(tinypic);
-		// System.out.println();
-		// print(image);
+		image = flippedHorizontally(tinypic);
+		System.out.println();
+		print(image);
 
 		//// Write here whatever code you need in order to test your work. You can
 		/// continue using the image array.
@@ -132,13 +132,13 @@ public class Runigram {
 	public static Color[][] grayScaled(Color[][] image) {
 		int numRows = image.length;
 		int numCols = image[0].length;
-		Color[][] greyImage = new Color[numRows][numCols];
-		for (int i = 0; i < image.length; i++) {
-			for (int j = 0; j < image[0].length; j++) {
-				greyImage[i][j] = luminance(image[i][j]);
+		Color[][] grayImage = new Color[numRows][numCols];
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				grayImage[i][j] = luminance(image[i][j]);
 			}
 		}
-		return greyImage;
+		return grayImage;
 	}
 
 	/**
@@ -146,14 +146,26 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
+		// int sourceHeight = image.length;
+		// int sourceWidth = image[0].length;
+		// double heightScaleFactor = (double) sourceHeight / height;
+		// double widthScaleFactor = (double) sourceWidth / width;
+		// Color[][] targetImage = new Color[height][width];
+		// for (int i = 0; i < height; i++) {
+		// 	for (int j = 0; j < width; j++) {
+		// 		targetImage[i][j] = image[(int) (i * heightScaleFactor)][(int) (j * widthScaleFactor)];
+		// 	}
+		// }
+		// return targetImage;
+
 		int sourceHeight = image.length;
 		int sourceWidth = image[0].length;
-		double heightScaleFactor = (double) sourceHeight / height;
-		double widthScaleFactor = (double) sourceWidth / width;
 		Color[][] targetImage = new Color[height][width];
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				targetImage[i][j] = image[(int) (i * heightScaleFactor)][(int) (j * widthScaleFactor)];
+				int srcI = i * sourceHeight / height;
+				int srcJ = j * sourceWidth/ width;
+				targetImage[i][j] = image[srcI][srcJ];
 			}
 		}
 		return targetImage;
@@ -169,9 +181,14 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		int r = (int) Math.round(alpha * c1.getRed() + (1 - alpha) * c2.getRed());
-		int g = (int) Math.round(alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
-		int b = (int) Math.round(alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
+		// int r = (int) Math.round(alpha * c1.getRed() + (1 - alpha) * c2.getRed());
+		// int g = (int) Math.round(alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
+		// int b = (int) Math.round(alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
+		// return new Color(r, g, b);
+
+		int r = (int) (alpha * c1.getRed() + (1 - alpha) * c2.getRed());
+		int g = (int) (alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
+		int b = (int) (alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
 		return new Color(r, g, b);
 	}
 
@@ -184,11 +201,11 @@ public class Runigram {
 	 * The two images must have the same dimensions.
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		int rowNum = image1.length;
-		int colNum = image1[0].length;
-		Color[][] result = new Color[rowNum][colNum];
-		for (int i = 0; i < rowNum; i++) {
-			for (int j = 0; j < colNum; j++) {
+		int numRows = image1.length;
+		int numCols = image1[0].length;
+		Color[][] result = new Color[numRows][numCols];
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
 				result[i][j] = blend(image1[i][j], image2[i][j], alpha);
 			}
 		}
@@ -202,13 +219,13 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		int rowNum = source.length;
-		int colNum = source[0].length;
+		int numRows = source.length;
+		int numCols = source[0].length;
 
 		// If the size of the traget and the source are different, scales the target image
 		//  to the dimensions of the source image.
-		if ((rowNum != target.length) || (colNum != target[0].length)) {
-			target = scaled(target, colNum, rowNum);
+		if ((numRows != target.length) || (numCols != target[0].length)) {
+			target = scaled(target, numCols, numRows);
 		}
 
 		// Morphs the source image into the target image, gradually, in n steps.
